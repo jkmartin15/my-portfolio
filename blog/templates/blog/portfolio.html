@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #333; }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; text-align: center; padding: 60px 20px;
+        }
+        header h1 { font-size: 2.5rem; }
+        header p { margin-top: 10px; opacity: 0.85; }
+
+        nav { text-align: center; margin-top: 16px; }
+        nav a {
+            color: white; text-decoration: none;
+            margin: 0 14px; font-size: 0.95rem;
+            opacity: 0.85;
+        }
+        nav a:hover { opacity: 1; text-decoration: underline; }
+
+        .container { max-width: 980px; margin: 40px auto; padding: 0 20px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white; border-radius: 12px;
+            padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); }
+        .card h2 { font-size: 1.2rem; color: #333; margin-bottom: 10px; }
+        .card p { color: #555; line-height: 1.7; font-size: 0.95rem; }
+        .tech {
+            display: inline-block; background: #ede9fe;
+            color: #667eea; font-size: 0.78rem;
+            padding: 4px 10px; border-radius: 20px;
+            margin: 12px 0 16px;
+        }
+        .card a {
+            display: inline-block; background: #667eea;
+            color: white; padding: 8px 18px;
+            border-radius: 8px; text-decoration: none;
+            font-size: 0.88rem;
+        }
+        .card a:hover { background: #764ba2; }
+
+        .empty { text-align: center; color: #888; margin-top: 60px; font-size: 1.1rem; }
+        footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🗂️ My Projects</h1>
+    <p>Things I've built and worked on.</p>
+    <nav>
+        <a href="/">📝 Blog</a>
+        <a href="/portfolio/">🗂️ Portfolio</a>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="grid">
+        {% for project in projects %}
+        <div class="card">
+            <h2>{{ project.title }}</h2>
+            <span class="tech">🛠 {{ project.tech_stack }}</span>
+            <p>{{ project.description }}</p>
+            {% if project.link %}
+            <br>
+            <a href="{{ project.link }}" target="_blank">🔗 View Project</a>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div class="empty">
+            <p>📭 No projects yet. <a href="/admin">Add one in the admin panel!</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    <p>Built with Django & SQLite ❤️</p>
+</footer>
+
+</body>
+</html>

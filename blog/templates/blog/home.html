@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #333; }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; text-align: center; padding: 60px 20px;
+        }
+        header h1 { font-size: 2.5rem; }
+        header p { margin-top: 10px; opacity: 0.85; }
+
+        .container { max-width: 860px; margin: 40px auto; padding: 0 20px; }
+
+        .card {
+            background: white; border-radius: 12px;
+            padding: 28px; margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); }
+        .card h2 a { color: #667eea; text-decoration: none; font-size: 1.3rem; }
+        .card h2 a:hover { text-decoration: underline; }
+        .meta { font-size: 0.85rem; color: #888; margin: 8px 0 14px; }
+        .card p { color: #555; line-height: 1.7; }
+
+        .empty { text-align: center; color: #888; margin-top: 60px; font-size: 1.1rem; }
+
+        footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
+    </style>
+    <nav style="margin-top:16px;">
+        <a href="/" style="color:white; margin: 0 14px; opacity:0.85; text-decoration:none;">📝 Blog</a>
+        <a href="/portfolio/" style="color:white; margin: 0 14px; opacity:0.85; text-decoration:none;">🗂️ Portfolio</a>
+    </nav>
+</head>
+<body>
+
+<header>
+    <h1>🧑‍💻 My Portfolio Blog</h1>
+    <p>Thoughts, projects, and things I've learned.</p>
+</header>
+
+<div class="container">
+    {% for post in posts %}
+    <div class="card">
+        <h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
+        <div class="meta">✍️ {{ post.author }} &nbsp;|&nbsp; 📅 {{ post.date_posted|date:"F d, Y" }}</div>
+        <p>{{ post.content|truncatewords:35 }}</p>
+    </div>
+    {% empty %}
+    <div class="empty">
+        <p>📭 No posts yet. <a href="/admin">Add one in the admin panel!</a></p>
+    </div>
+    {% endfor %}
+</div>
+
+<footer>
+    <p>Built with Django & SQLite ❤️</p>
+</footer>
+
+</body>
+</html>

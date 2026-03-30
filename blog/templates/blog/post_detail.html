@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #333; }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; padding: 30px 20px;
+        }
+        header a { color: white; text-decoration: none; font-size: 0.95rem; opacity: 0.85; }
+        header a:hover { opacity: 1; text-decoration: underline; }
+
+        .container {
+            max-width: 860px; margin: 40px auto; padding: 0 20px;
+        }
+        .card {
+            background: white; border-radius: 12px;
+            padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .card h1 { font-size: 2rem; color: #333; margin-bottom: 12px; }
+        .meta { font-size: 0.85rem; color: #888; margin-bottom: 28px; }
+        .content { line-height: 1.9; color: #444; font-size: 1.05rem; }
+
+        footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/">← Back to Home</a>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h1>{{ post.title }}</h1>
+        <div class="meta">✍️ {{ post.author }} &nbsp;|&nbsp; 📅 {{ post.date_posted|date:"F d, Y" }}</div>
+        <div class="content">{{ post.content }}</div>
+    </div>
+</div>
+
+<footer>
+    <p>Built with Django & SQLite ❤️</p>
+</footer>
+
+</body>
+</html>
